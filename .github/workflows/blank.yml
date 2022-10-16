@@ -28,6 +28,11 @@ jobs:
       # run shellcheck
       - name: ShellCheck
         uses: ludeeus/action-shellcheck@1.1.0
+      
+      # Lint the markdown
+      - name: Lint Markdown
+        uses: tomwhross/write-good-action@v1.5
+
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
