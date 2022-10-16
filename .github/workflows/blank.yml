@@ -28,13 +28,15 @@ jobs:
       # run shellcheck
       - name: ShellCheck
         uses: ludeeus/action-shellcheck@1.1.0
+      - name: Get the shell check output
+        run: echo "{{ steps.action-shellcheck.output.result }}"
       - name: Post comment
         uses: mshick/add-pr-comment@v1
-        if: $
+        if: ${{ steps.action-shellcheck.output.result }}
         with:
             message: |
-              $
-            repo-token: $
+              ${{ steps.action-shellcheck.output.result }}
+            repo-token: ${{ secrets.GITHUB_TOKEN }}
             repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
             allow-repeats: false # This is the default
       
